@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="myPromise.js"></script>
+    <script>
+        // var op = new myPromise((res, rej) => {
+        //     rej(10)
+
+        // })
+
+        function promise(value, delay) {
+            return new myPromise((res, rej) => {
+                setTimeout(function() {
+                    rej(value);
+                }, delay)
+            })
+        }
+        // op.then((val) => {
+        //     console.log(val + ' ok');
+        //     return new myPromise((res, rej) => {
+        //         rej(0)
+        //     });
+        // }, (reason) => {
+        //     console.log(reason + ' no');
+        //     return new myPromise((res, rej) => {
+        //         rej(0)
+        //     });
+        // }).then((val) => {
+        //     console.log(val + " after")
+        // }, (reason) => {
+        //     console.log(reason + " no after")
+        // })
+        myPromise.all([promise(10, 1000), promise(20, 2000), promise(30, 3000)]).then(
+            (value) => {
+                console.log(value)
+            },
+            (reason) => {
+                console.log(reason)
+            }
+        )
+    </script>
+</body>
+
+</html>
